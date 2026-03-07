@@ -7,7 +7,10 @@ actor TranscriptionService {
     // 记录模型是否已加载完毕
     private var isInitialized = false
     
-    
+    // 供外部查询模型加载状态
+    func getIsInitialized() -> Bool {
+        return isInitialized
+    }
 
     // 只有在第一次调用转录或明确要求下载时才执行
     func initializeIfNeeded() async throws {
@@ -31,13 +34,11 @@ actor TranscriptionService {
         try await initializeIfNeeded()
         guard let asr = asr else { throw NSError(domain: "ASR", code: 500) }
         
-        print("开始转换音频: \(fileURL.lastPathComponent)")
         // 音频预处理
         let samples = try AudioConverter().resampleAudioFile(fileURL)
         
         // 开始转录
         let result = try await asr.transcribe(samples, source: .system)
-        print("转录完成: \(result.text.prefix(50))...")
         
         return result.text
     }

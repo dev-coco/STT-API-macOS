@@ -7,121 +7,127 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3D7B56C2F0FDEA600DFF944 /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = B3D7B56B2F0FDEA600DFF944 /* Vapor */; };
-		B3D7B56F2F0FDEC100DFF944 /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = B3D7B56E2F0FDEC100DFF944 /* FluidAudio */; };
-		B3D7B5712F0FDEC100DFF944 /* FluidAudioTTS in Frameworks */ = {isa = PBXBuildFile; productRef = B3D7B5702F0FDEC100DFF944 /* FluidAudioTTS */; };
+		B3AA23CC2F5BEDCC008A30FB /* Vapor in Frameworks */ = {isa = PBXBuildFile; productRef = B3AA23CB2F5BEDCC008A30FB /* Vapor */; };
+		B3AA23CF2F5BEDDC008A30FB /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = B3AA23CE2F5BEDDC008A30FB /* FluidAudio */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B3D7B5562F0FDDED00DFF944 /* STT API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "STT API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3AA23832F5BE527008A30FB /* MultiSense API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MultiSense API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B3D7B5582F0FDDED00DFF944 /* STT API */ = {
+		B3AA23852F5BE527008A30FB /* MultiSense API */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "STT API";
+			path = "MultiSense API";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B3D7B5532F0FDDED00DFF944 /* Frameworks */ = {
+		B3AA23802F5BE527008A30FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3D7B56F2F0FDEC100DFF944 /* FluidAudio in Frameworks */,
-				B3D7B5712F0FDEC100DFF944 /* FluidAudioTTS in Frameworks */,
-				B3D7B56C2F0FDEA600DFF944 /* Vapor in Frameworks */,
+				B3AA23CF2F5BEDDC008A30FB /* FluidAudio in Frameworks */,
+				B3AA23CC2F5BEDCC008A30FB /* Vapor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B3D7B54D2F0FDDED00DFF944 = {
+		B3AA237A2F5BE527008A30FB = {
 			isa = PBXGroup;
 			children = (
-				B3D7B5582F0FDDED00DFF944 /* STT API */,
-				B3D7B5572F0FDDED00DFF944 /* Products */,
+				B3AA23852F5BE527008A30FB /* MultiSense API */,
+				B3AA23AD2F5BE672008A30FB /* Frameworks */,
+				B3AA23842F5BE527008A30FB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B3D7B5572F0FDDED00DFF944 /* Products */ = {
+		B3AA23842F5BE527008A30FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B3D7B5562F0FDDED00DFF944 /* STT API.app */,
+				B3AA23832F5BE527008A30FB /* MultiSense API.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B3AA23AD2F5BE672008A30FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B3D7B5552F0FDDED00DFF944 /* STT API */ = {
+		B3AA23822F5BE527008A30FB /* MultiSense API */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B3D7B5612F0FDDED00DFF944 /* Build configuration list for PBXNativeTarget "STT API" */;
+			buildConfigurationList = B3AA238E2F5BE528008A30FB /* Build configuration list for PBXNativeTarget "MultiSense API" */;
 			buildPhases = (
-				B3D7B5522F0FDDED00DFF944 /* Sources */,
-				B3D7B5532F0FDDED00DFF944 /* Frameworks */,
-				B3D7B5542F0FDDED00DFF944 /* Resources */,
+				B3AA237F2F5BE527008A30FB /* Sources */,
+				B3AA23802F5BE527008A30FB /* Frameworks */,
+				B3AA23812F5BE527008A30FB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B3D7B5582F0FDDED00DFF944 /* STT API */,
+				B3AA23852F5BE527008A30FB /* MultiSense API */,
 			);
-			name = "STT API";
+			name = "MultiSense API";
 			packageProductDependencies = (
-				B3D7B56B2F0FDEA600DFF944 /* Vapor */,
-				B3D7B56E2F0FDEC100DFF944 /* FluidAudio */,
-				B3D7B5702F0FDEC100DFF944 /* FluidAudioTTS */,
+				B3AA23CB2F5BEDCC008A30FB /* Vapor */,
+				B3AA23CE2F5BEDDC008A30FB /* FluidAudio */,
 			);
-			productName = "STT API";
-			productReference = B3D7B5562F0FDDED00DFF944 /* STT API.app */;
+			productName = "MultiSense API";
+			productReference = B3AA23832F5BE527008A30FB /* MultiSense API.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B3D7B54E2F0FDDED00DFF944 /* Project object */ = {
+		B3AA237B2F5BE527008A30FB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					B3D7B5552F0FDDED00DFF944 = {
+					B3AA23822F5BE527008A30FB = {
 						CreatedOnToolsVersion = 26.1;
 					};
 				};
 			};
-			buildConfigurationList = B3D7B5512F0FDDED00DFF944 /* Build configuration list for PBXProject "STT API" */;
+			buildConfigurationList = B3AA237E2F5BE527008A30FB /* Build configuration list for PBXProject "MultiSense API" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
-			mainGroup = B3D7B54D2F0FDDED00DFF944;
+			mainGroup = B3AA237A2F5BE527008A30FB;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				B3D7B56A2F0FDEA600DFF944 /* XCRemoteSwiftPackageReference "vapor" */,
-				B3D7B56D2F0FDEC100DFF944 /* XCRemoteSwiftPackageReference "FluidAudio" */,
+				B3AA23CA2F5BEDCC008A30FB /* XCRemoteSwiftPackageReference "vapor" */,
+				B3AA23CD2F5BEDDC008A30FB /* XCRemoteSwiftPackageReference "FluidAudio" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = B3D7B5572F0FDDED00DFF944 /* Products */;
+			productRefGroup = B3AA23842F5BE527008A30FB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B3D7B5552F0FDDED00DFF944 /* STT API */,
+				B3AA23822F5BE527008A30FB /* MultiSense API */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B3D7B5542F0FDDED00DFF944 /* Resources */ = {
+		B3AA23812F5BE527008A30FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,7 +137,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B3D7B5522F0FDDED00DFF944 /* Sources */ = {
+		B3AA237F2F5BE527008A30FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -141,7 +147,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		B3D7B55F2F0FDDED00DFF944 /* Debug */ = {
+		B3AA238C2F5BE528008A30FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -198,11 +204,12 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		B3D7B5602F0FDDED00DFF944 /* Release */ = {
+		B3AA238D2F5BE528008A30FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -252,10 +259,11 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
-		B3D7B5622F0FDDED00DFF944 /* Debug */ = {
+		B3AA238F2F5BE528008A30FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -265,7 +273,6 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "STT API";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -275,14 +282,12 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Raz1ner.STT-API";
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Raz1ner.MultiSense-API";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -298,7 +303,7 @@
 			};
 			name = Debug;
 		};
-		B3D7B5632F0FDDED00DFF944 /* Release */ = {
+		B3AA23902F5BE528008A30FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -308,7 +313,6 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "STT API";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -318,14 +322,12 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Raz1ner.STT-API";
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Raz1ner.MultiSense-API";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -344,20 +346,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B3D7B5512F0FDDED00DFF944 /* Build configuration list for PBXProject "STT API" */ = {
+		B3AA237E2F5BE527008A30FB /* Build configuration list for PBXProject "MultiSense API" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3D7B55F2F0FDDED00DFF944 /* Debug */,
-				B3D7B5602F0FDDED00DFF944 /* Release */,
+				B3AA238C2F5BE528008A30FB /* Debug */,
+				B3AA238D2F5BE528008A30FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B3D7B5612F0FDDED00DFF944 /* Build configuration list for PBXNativeTarget "STT API" */ = {
+		B3AA238E2F5BE528008A30FB /* Build configuration list for PBXNativeTarget "MultiSense API" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3D7B5622F0FDDED00DFF944 /* Debug */,
-				B3D7B5632F0FDDED00DFF944 /* Release */,
+				B3AA238F2F5BE528008A30FB /* Debug */,
+				B3AA23902F5BE528008A30FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -365,7 +367,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B3D7B56A2F0FDEA600DFF944 /* XCRemoteSwiftPackageReference "vapor" */ = {
+		B3AA23CA2F5BEDCC008A30FB /* XCRemoteSwiftPackageReference "vapor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vapor/vapor";
 			requirement = {
@@ -373,7 +375,7 @@
 				minimumVersion = 4.121.0;
 			};
 		};
-		B3D7B56D2F0FDEC100DFF944 /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+		B3AA23CD2F5BEDDC008A30FB /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FluidInference/FluidAudio";
 			requirement = {
@@ -384,22 +386,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B3D7B56B2F0FDEA600DFF944 /* Vapor */ = {
+		B3AA23CB2F5BEDCC008A30FB /* Vapor */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B3D7B56A2F0FDEA600DFF944 /* XCRemoteSwiftPackageReference "vapor" */;
+			package = B3AA23CA2F5BEDCC008A30FB /* XCRemoteSwiftPackageReference "vapor" */;
 			productName = Vapor;
 		};
-		B3D7B56E2F0FDEC100DFF944 /* FluidAudio */ = {
+		B3AA23CE2F5BEDDC008A30FB /* FluidAudio */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B3D7B56D2F0FDEC100DFF944 /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			package = B3AA23CD2F5BEDDC008A30FB /* XCRemoteSwiftPackageReference "FluidAudio" */;
 			productName = FluidAudio;
-		};
-		B3D7B5702F0FDEC100DFF944 /* FluidAudioTTS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B3D7B56D2F0FDEC100DFF944 /* XCRemoteSwiftPackageReference "FluidAudio" */;
-			productName = FluidAudioTTS;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = B3D7B54E2F0FDDED00DFF944 /* Project object */;
+	rootObject = B3AA237B2F5BE527008A30FB /* Project object */;
 }

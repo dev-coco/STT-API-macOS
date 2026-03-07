@@ -41,7 +41,7 @@ struct TranscribeApp: App {
                 .foregroundColor(serverManager.isRunning ? .green : .blue)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("STT API")
+                Text("MultiSense API")
                     .font(.system(size: 20, weight: .bold))
                 Text(serverManager.status)
                     .font(.system(size: 13, design: .monospaced))
@@ -64,7 +64,7 @@ struct TranscribeApp: App {
     var modelCard: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("模型资源").font(.system(size: 16, weight: .semibold))
+                Text("modelResources").font(.system(size: 16, weight: .semibold))
                 Spacer()
                 
                 // 模型加载完成后，显示绿勾标记
@@ -81,7 +81,7 @@ struct TranscribeApp: App {
 
             // 加载状态按钮
             Button(action: { Task { await serverManager.downloadModel() } }) {
-                Text(serverManager.isModelReady ? "模型已就绪" : "加载模型")
+                Text(serverManager.isModelReady ? "modelReady" : "loadModel")
                     .font(.system(size: 14))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
@@ -97,7 +97,7 @@ struct TranscribeApp: App {
     // API 设置组件
     var serverSettingsCard: some View {
         HStack {
-            Label("监听端口", systemImage: "network")
+            Label("listenPort", systemImage: "network")
                 .font(.system(size: 16, weight: .semibold))
             
             Spacer()
@@ -127,7 +127,7 @@ struct TranscribeApp: App {
         }) {
             HStack {
                 Image(systemName: serverManager.isRunning ? "stop.fill" : "play.fill")
-                Text(serverManager.isRunning ? "停止服务" : "启动 API 服务")
+                Text(serverManager.isRunning ? "stopService" : "startService")
                     .font(.system(size: 15, weight: .bold))
             }
             .foregroundColor(.white)
@@ -139,7 +139,7 @@ struct TranscribeApp: App {
         }
         .buttonStyle(.plain)
         // 只有在加载完模型完成后按钮才可以使用
-        .disabled(!serverManager.isModelReady && !serverManager.isRunning)
+        // .disabled(!serverManager.isModelReady && !serverManager.isRunning)
     }
 }
 

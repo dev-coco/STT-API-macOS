@@ -2,18 +2,43 @@ import Vapor
 import SwiftUI
 import Combine
 
-// 定义输出的 JSON 结构，放在类外部以确保作用域全局可见
+// 转录接口返回的 JSON 结构
 struct TranscribeResponse: Content {
     let text: String
 }
 
+// 状态响应结构
+struct ResponseStatus: Content {
+    let status: String
+    let transcribe: Bool
+    let ocr: Bool
+    let classify: Bool
+}
+
+// 单个识别分类结果
+struct ClassificationResult: Content {
+    let identifier: String
+    let confidence: Float
+}
+
+// 分类接口的标准响应
+struct ClassifyResponse: Content {
+    let labels: [ClassificationResult]
+}
+
 @MainActor
 class ServerManager: ObservableObject {
-    @Published var status = "系统准备就绪"
+    // 软件显示状态的文本
+    @Published var status = String(localized: "systemReady")
+    // 服务是否正在运行的状态
     @Published var isRunning = false
+    // 模型下载进度
     @Published var downloadProgress: Double = 0.0
+    // 正在下载模型的状态
     @Published var isDownloading = false
+    // 模型是否已准备好
     @Published var isModelReady = false
+    // 默认端口
     @Published var port: String = "1643"
     
     private var vApp: Application?
@@ -21,8 +46,13 @@ class ServerManager: ObservableObject {
     private var serverTask: Task<Void, Never>?
     // 进度监听定时器
     private var progressTimer: Timer?
-    // 实际执行转录的底层 SDK 服务
+    // 执行转录的底层 SDK 服务
     let service = TranscriptionService()
+    
+    // 图片识别文字服务
+    let ocrService = OCRService()
+    // 图片识别分类服务
+    let classificationService = ImageClassificationService()
     
     // 模型文件存储的完整路径
     private var modelPath: URL {
@@ -37,7 +67,7 @@ class ServerManager: ObservableObject {
     func checkModelExists() {
         isModelReady = FileManager.default.fileExists(atPath: modelPath.path)
         if isModelReady {
-            status = "模型已缓存"
+            status = String(localized: "modelCached")
             downloadProgress = 1.0
         }
     }
@@ -84,7 +114,7 @@ class ServerManager: ObservableObject {
         if isModelReady { return }
         
         isDownloading = true
-        status = "正在连接服务器..."
+        status = String(localized: "connectingServer")
         downloadProgress = 0.0
         
         // 启动定时器更新进度
@@ -96,9 +126,10 @@ class ServerManager: ObservableObject {
                 
                 if progress > self.downloadProgress {
                     self.downloadProgress = progress
-                    self.status = "正在下载资源 (\(Int(progress * 100))%)"
+//                    self.status = "正在下载资源 (\(Int(progress * 100))%)"
+                    self.status = String(format: NSLocalizedString("downloadingProgress", comment: ""), Int(progress * 100))
                 } else if progress > 0 {
-                    self.status = "正在下载..."
+                    self.status = String(localized: "downloading")
                 }
             }
         }
@@ -109,10 +140,10 @@ class ServerManager: ObservableObject {
             progressTimer?.invalidate()
             self.isModelReady = true
             self.downloadProgress = 1.0
-            status = "模型加载完成"
+            status = String(localized: "modelLoaded")
         } catch {
             progressTimer?.invalidate()
-            status = "下载中断"
+            status = String(localized: "downloadInterrupted")
             downloadProgress = 0
         }
         isDownloading = false
@@ -120,9 +151,9 @@ class ServerManager: ObservableObject {
 
     // 启动 API 服务
     func start() {
-        guard !isRunning && !isDownloading else { return }
+        guard !isRunning else { return }
         let portInt = Int(port) ?? 1643
-        status = "正在加载引擎..."
+        status = String(localized: "serviceStarting")
         
         serverTask = Task {
             do {
@@ -135,11 +166,25 @@ class ServerManager: ObservableObject {
                 app.http.server.configuration.hostname = "127.0.0.1"
                 app.http.server.configuration.port = portInt
                 
-                // 定义路由：POST /transcribe
+                // GET /
+                // 检查服务与功能状态
+                app.get { req async -> ResponseStatus in
+                    
+                    // 查询 ASR 是否已初始化
+                    let asrLoaded = await self.service.getIsInitialized()
+                    return ResponseStatus(
+                        status: "success",
+                        transcribe: asrLoaded,
+                        ocr: true,
+                        classify: true
+                    )
+                }
+                
+                // POST /transcribe
+                // 语音转文字
                 app.post("transcribe") { req -> TranscribeResponse in
                     struct TranscribeRequest: Content {
                         var audio: File // 音频 Blob 数据
-                        var language: String? // 可选语言参数
                     }
                     
                     let body = try req.content.decode(TranscribeRequest.self)
@@ -151,19 +196,66 @@ class ServerManager: ObservableObject {
                     // 删除临时文件
                     defer { try? FileManager.default.removeItem(at: tempURL) }
                     
-                    // 调用核心引擎进行转录
+                    // 执行语音识别
                     let text = try await self.service.transcribe(fileURL: tempURL)
 
                     return TranscribeResponse(text: text)
                 }
                 
-                self.status = "API 运行中，端口: \(portInt)"
+                
+                // POST /ocr
+                // 图片文字识别
+                app.post("ocr") { req -> TranscribeResponse in
+                    struct OCRRequest: Content {
+                        var image: File // 图片 Blob 数据
+                        var language: String? // 逗号分隔语言
+                        var lineBreak: Bool? // 是否保留换行
+                    }
+                    
+                    let body = try req.content.decode(OCRRequest.self)
+                    
+                    // 解析语言参数
+                    let langs = body.language?.components(separatedBy: ",") ?? ["zh-Hans", "en-US"]
+                    // 是否保留换行
+                    let keepLineBreaks = body.lineBreak ?? true
+                    
+                    // 执行 OCR 处理
+                    let text = try await self.ocrService.performOCR(
+                        imageData: Data(body.image.data.readableBytesView),
+                        languages: langs,
+                        keepLineBreaks: keepLineBreaks
+                    )
+                    
+                    return TranscribeResponse(text: text)
+                }
+                
+                // POST /classify
+                // 图像物体识别
+                app.post("classify") { req async throws -> ClassifyResponse in
+                    struct ClassifyRequest: Content {
+                        var image: File // 接收名为 image 的文件对象
+                    }
+                    
+                    let body = try req.content.decode(ClassifyRequest.self)
+                    
+                    // 调用分类服务
+                    let results = try await self.classificationService.classifyImage(
+                        imageData: Data(body.image.data.readableBytesView)
+                    )
+                    
+                    return ClassifyResponse(labels: results)
+                }
+                
+                
+//                self.status = "API 运行中，端口: \(portInt)"
+                self.status = String(format: NSLocalizedString("apiRunning", comment: ""), portInt)
                 self.isRunning = true
                 
                 // 启动服务
                 try await app.execute()
             } catch {
-                self.status = "启动失败: \(error.localizedDescription)"
+//                self.status = "启动失败: \(error.localizedDescription)"
+                self.status = String(format: NSLocalizedString("startFailed", comment: ""), error.localizedDescription)
                 self.isRunning = false
             }
         }
@@ -172,16 +264,17 @@ class ServerManager: ObservableObject {
     // 停止 API 服务
     func stop() {
         guard let app = vApp else { return }
-        status = "停止中..."
+        status = String(localized: "serviceStopping")
         Task {
             try? await app.asyncShutdown()
             self.serverTask?.cancel()
             self.vApp = nil
             self.isRunning = false
-            self.status = "服务已停止"
+            self.status = String(localized: "serviceStopped")
         }
     }
 
+    // 打开模型文件夹
     func openModelDirectory() {
         let path = modelPath.deletingLastPathComponent()
         NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: path.path)
